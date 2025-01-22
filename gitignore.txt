@@ -1,0 +1,84 @@
+# ==================================================================
+# Unity generated files
+# ==================================================================
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+[Mm]emoryCaptures/
+
+# Asset Bundles
+*.manifest
+
+# Crash Reports
+sysinfo.txt
+
+# ==================================================================
+# Visual Studio/MonoDevelop generated files
+# ==================================================================
+.vscode/
+.vscode/*
+*.csproj
+*.unityproj
+*.sln
+*.suo
+*.user
+*.userprefs
+*.pidb
+*.booproj
+*.svd
+
+# ==================================================================
+# OS-specific files
+# ==================================================================
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# ==================================================================
+# Auto-generated Files (Unity)
+# ==================================================================
+*.apk
+*.app
+*.aab
+*.db
+
+# ==================================================================
+# Scriptable Objects and other generated configs
+# ==================================================================
+/Assets/**/*.meta
+/*.meta
+
+# Ignore Unity Cloud Build files
+/[Uu]ser[Ss]ettings/
+
+# Ignore Collaborate metadata files
+/[Aa]ssets/Collab/
+
+# Prevent uploaded screenshots and large binaries
+*.png
+*.jpg
+*.jpeg
+*.mp4
+*.mov
+
+# Ignore Build Report files
+*.buildreport
+
+# ==================================================================
+# Ignore JetBrains Rider
+# ==================================================================
+.idea/
+.idea/*
+
+# ==================================================================
+# Package Manager
+# ==================================================================
+/[Pp]ackages/manifest.json
+/[Pp]ackages/packages-lock.json
