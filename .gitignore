@@ -52,8 +52,8 @@ Thumbs.db
 # ==================================================================
 # Scriptable Objects and other generated configs
 # ==================================================================
-/Assets/**/*.meta
-/*.meta
+# NÃO IGNORAR *.meta
+!*.meta
 
 # Ignore Unity Cloud Build files
 /[Uu]ser[Ss]ettings/
@@ -80,5 +80,6 @@ Thumbs.db
 # ==================================================================
 # Package Manager
 # ==================================================================
-/[Pp]ackages/manifest.json
 /[Pp]ackages/packages-lock.json
+# NÃO IGNORAR manifest.json
+!/[Pp]ackages/manifest.json
