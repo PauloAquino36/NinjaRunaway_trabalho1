@@ -88,3 +88,5 @@ Thumbs.db
 *.shadergraph
 *.hlsl
 *.mat
+*.png.meta
+*__000.png.meta.
