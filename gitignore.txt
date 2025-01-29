@@ -61,13 +61,6 @@ Thumbs.db
 # Ignore Collaborate metadata files
 /[Aa]ssets/Collab/
 
-# Prevent uploaded screenshots and large binaries
-*.png
-*.jpg
-*.jpeg
-*.mp4
-*.mov
-
 # Ignore Build Report files
 *.buildreport
 
