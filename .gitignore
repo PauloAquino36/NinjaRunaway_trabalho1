@@ -62,9 +62,6 @@ Thumbs.db
 /[Aa]ssets/Collab/
 
 # Prevent uploaded screenshots and large binaries
-*.png
-*.jpg
-*.jpeg
 *.mp4
 *.mov
 
@@ -83,3 +80,11 @@ Thumbs.db
 /[Pp]ackages/packages-lock.json
 # NÃO IGNORAR manifest.json
 !/[Pp]ackages/manifest.json
+
+*.meta
+*.shader
+*.cginc
+*.asset
+*.shadergraph
+*.hlsl
+*.mat
