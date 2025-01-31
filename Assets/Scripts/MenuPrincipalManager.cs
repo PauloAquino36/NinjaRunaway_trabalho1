@@ -3,15 +3,22 @@ using UnityEngine.SceneManagement;
 
 public class MenuPrincipalManager : MonoBehaviour
 {
-    [SerializeField] private string nomeDoLevelDeJogo;
+    [SerializeField] private string nomeDoLevelDeJogo = "SampleScene";
     [SerializeField] private GameObject painelMenuInicial;
     [SerializeField] private GameObject painelOpcoes;
+
     public void Jogar()
     {
-        SceneManager.LoadScene("Jogo");
+        if (!string.IsNullOrEmpty(nomeDoLevelDeJogo))
+        {
+            SceneManager.LoadScene(nomeDoLevelDeJogo);
+        }
+        else
+        {
+            Debug.LogError("Erro: Nome da cena não foi definido! Defina um nome no Inspector.");
+        }
     }
 
-    // Update is called once per frame
     public void AbrirOpcoes()
     {
         painelMenuInicial.SetActive(false);
@@ -26,7 +33,7 @@ public class MenuPrincipalManager : MonoBehaviour
 
     public void SairJogo()
     {
-        Debug.Log("Sair do Jogo");
+        Debug.Log("Saindo do jogo...");
         Application.Quit();
     }
 }
