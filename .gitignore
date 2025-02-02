@@ -51,3 +51,11 @@ ehthumbs.db
 *.txt.meta
 *.ttf.meta
 *.json.meta
+*.cginc
+*Unlit.shadergraph  
+*.shader
+*.mat
+*.asset
+*.hlsl
+*LIT.shadergraph
+*Lit.shadergraph
