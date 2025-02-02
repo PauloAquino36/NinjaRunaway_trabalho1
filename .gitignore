@@ -33,6 +33,8 @@ UserSettings/
 *.db
 *.buildreport
 *.bak
+*.log
+*.bak~
 
 # Unity Cloud Build & Collab
 /[Aa]ssets/Collab/
@@ -46,16 +48,3 @@ UserSettings/
 *.DS_Store
 Thumbs.db
 ehthumbs.db
-*.png.meta
-*.meta
-*.txt.meta
-*.ttf.meta
-*.json.meta
-*.cginc
-*Unlit.shadergraph  
-*.shader
-*.mat
-*.asset
-*.hlsl
-*LIT.shadergraph
-*Lit.shadergraph
