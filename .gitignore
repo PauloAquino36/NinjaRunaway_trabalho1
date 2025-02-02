@@ -1,5 +1,5 @@
 # ==================================================================
-# Unity generated files
+# Unity gerados automaticamente (NÃO COMITAR)
 # ==================================================================
 [Ll]ibrary/
 [Tt]emp/
@@ -9,17 +9,18 @@
 [Ll]ogs/
 [Mm]emoryCaptures/
 
-# Asset Bundles
-*.manifest
+# Pacotes e dependências
+/[Pp]ackages/packages-lock.json
 
-# Crash Reports
-sysinfo.txt
-
-# ==================================================================
-# Visual Studio/MonoDevelop generated files
-# ==================================================================
+# Configurações do usuário local (NÃO compartilháveis)
+UserSettings/
 .vscode/
-.vscode/*
+.idea/
+
+# Metadados do Unity (IMPORTANTE: NÃO IGNORAR .meta)
+!*.meta
+
+# Arquivos de cache e builds
 *.csproj
 *.unityproj
 *.sln
@@ -29,64 +30,19 @@ sysinfo.txt
 *.pidb
 *.booproj
 *.svd
-
-# ==================================================================
-# OS-specific files
-# ==================================================================
-.DS_Store
-.DS_Store?
-._*
-.Spotlight-V100
-.Trashes
-ehthumbs.db
-Thumbs.db
-
-# ==================================================================
-# Auto-generated Files (Unity)
-# ==================================================================
-*.apk
-*.app
-*.aab
 *.db
+*.buildreport
+*.bak
 
-# ==================================================================
-# Scriptable Objects and other generated configs
-# ==================================================================
-# NÃO IGNORAR *.meta
-!*.meta
-
-# Ignore Unity Cloud Build files
-/[Uu]ser[Ss]ettings/
-
-# Ignore Collaborate metadata files
+# Unity Cloud Build & Collab
 /[Aa]ssets/Collab/
+[Uu]ser[Ss]ettings/
 
-# Prevent uploaded screenshots and large binaries
+# Formatos de vídeo e grandes binários (caso não sejam parte do jogo)
 *.mp4
 *.mov
 
-# Ignore Build Report files
-*.buildreport
-
-# ==================================================================
-# Ignore JetBrains Rider
-# ==================================================================
-.idea/
-.idea/*
-
-# ==================================================================
-# Package Manager
-# ==================================================================
-/[Pp]ackages/packages-lock.json
-# NÃO IGNORAR manifest.json
-!/[Pp]ackages/manifest.json
-
-*.meta
-*.shader
-*.cginc
-*.asset
-*.shadergraph
-*.hlsl
-*.mat
-*.png.meta
-*__000.png.meta.
+# Arquivos do Windows/macOS que não devem ser commitados
+.DS_Store
+Thumbs.db
+ehthumbs.db

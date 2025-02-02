@@ -21,25 +21,25 @@ AnimationClip:
   - serializedVersion: 2
     curve:
     - time: 0
-      value: {fileID: 5514226339480207315, guid: 9eda7bedb778a56449006baf02e6f010, type: 3}
+      value: {fileID: 5514226339480207315, guid: 45b496639ca7e3745b2d23e7a5d5639c, type: 3}
     - time: 0.05
-      value: {fileID: 499935376518030641, guid: f6d88c4a4972d274e92e6580eb77efa4, type: 3}
+      value: {fileID: 499935376518030641, guid: 6d7351be7335fc543b2c92497ada7e11, type: 3}
     - time: 0.1
-      value: {fileID: 1976069082351628407, guid: fd8042419be25fe4485f781b15390015, type: 3}
+      value: {fileID: 1976069082351628407, guid: d9d9ad0e4901ead4097e4c9af3e75192, type: 3}
     - time: 0.15
-      value: {fileID: 2399036268106487870, guid: e5b9e6968b2830a4cb37663e3614dc1c, type: 3}
+      value: {fileID: 2399036268106487870, guid: 99a38b7ff47b22040b10eb4cda57f77c, type: 3}
     - time: 0.2
-      value: {fileID: -7760274038790237140, guid: 5e729149fcbc3d844b51f9cc7fdc9b43, type: 3}
+      value: {fileID: -7760274038790237140, guid: 83e4f3e3a1efdf64683b7a63c0627468, type: 3}
     - time: 0.25
-      value: {fileID: 3973963038883025783, guid: 32d0c9cbe55fe6b4d94d2159af33039d, type: 3}
+      value: {fileID: 3973963038883025783, guid: b95724d4408222547bdba7f218c06880, type: 3}
     - time: 0.3
-      value: {fileID: 666707964547647914, guid: 5744ca925b3db76408f21c0232697231, type: 3}
+      value: {fileID: 666707964547647914, guid: b0ac977e3c6d8ac4b9bbc892945c1555, type: 3}
     - time: 0.35
-      value: {fileID: -7310379999039381107, guid: bf89a89c72582604ca8b3ce8b9b6365a, type: 3}
+      value: {fileID: -7310379999039381107, guid: 21d116b0dc19c8a40b38a77c916df2a8, type: 3}
     - time: 0.4
-      value: {fileID: -7638195595098339061, guid: 2a7ca4420d948054f845531129539499, type: 3}
+      value: {fileID: -7638195595098339061, guid: e932f5b1f54eba84d8d7cbc7b9523571, type: 3}
     - time: 0.45
-      value: {fileID: 4275868517986326181, guid: 8fa652f11136b9240ab781af300f3a3f, type: 3}
+      value: {fileID: 4275868517986326181, guid: 7933ba7cfaa194343b0304239feb75bb, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -62,16 +62,16 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     pptrCurveMapping:
-    - {fileID: 5514226339480207315, guid: 9eda7bedb778a56449006baf02e6f010, type: 3}
-    - {fileID: 499935376518030641, guid: f6d88c4a4972d274e92e6580eb77efa4, type: 3}
-    - {fileID: 1976069082351628407, guid: fd8042419be25fe4485f781b15390015, type: 3}
-    - {fileID: 2399036268106487870, guid: e5b9e6968b2830a4cb37663e3614dc1c, type: 3}
-    - {fileID: -7760274038790237140, guid: 5e729149fcbc3d844b51f9cc7fdc9b43, type: 3}
-    - {fileID: 3973963038883025783, guid: 32d0c9cbe55fe6b4d94d2159af33039d, type: 3}
-    - {fileID: 666707964547647914, guid: 5744ca925b3db76408f21c0232697231, type: 3}
-    - {fileID: -7310379999039381107, guid: bf89a89c72582604ca8b3ce8b9b6365a, type: 3}
-    - {fileID: -7638195595098339061, guid: 2a7ca4420d948054f845531129539499, type: 3}
-    - {fileID: 4275868517986326181, guid: 8fa652f11136b9240ab781af300f3a3f, type: 3}
+    - {fileID: 5514226339480207315, guid: 45b496639ca7e3745b2d23e7a5d5639c, type: 3}
+    - {fileID: 499935376518030641, guid: 6d7351be7335fc543b2c92497ada7e11, type: 3}
+    - {fileID: 1976069082351628407, guid: d9d9ad0e4901ead4097e4c9af3e75192, type: 3}
+    - {fileID: 2399036268106487870, guid: 99a38b7ff47b22040b10eb4cda57f77c, type: 3}
+    - {fileID: -7760274038790237140, guid: 83e4f3e3a1efdf64683b7a63c0627468, type: 3}
+    - {fileID: 3973963038883025783, guid: b95724d4408222547bdba7f218c06880, type: 3}
+    - {fileID: 666707964547647914, guid: b0ac977e3c6d8ac4b9bbc892945c1555, type: 3}
+    - {fileID: -7310379999039381107, guid: 21d116b0dc19c8a40b38a77c916df2a8, type: 3}
+    - {fileID: -7638195595098339061, guid: e932f5b1f54eba84d8d7cbc7b9523571, type: 3}
+    - {fileID: 4275868517986326181, guid: 7933ba7cfaa194343b0304239feb75bb, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
