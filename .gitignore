@@ -46,3 +46,8 @@ UserSettings/
 .DS_Store
 Thumbs.db
 ehthumbs.db
+.png.meta
+.meta
+.txt.meta
+.ttf.meta
+.json.meta
