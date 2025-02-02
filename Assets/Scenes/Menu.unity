@@ -956,7 +956,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -7443756053782179069, guid: 5f7feaf34855ab44ba1136ebf0240535, type: 3}
+  m_Sprite: {fileID: -7443756053782179069, guid: 1a5eca68aa1eb064d829e8fa6ff574d5, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1091,9 +1091,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b69971a83a4f26741917b73e584ede52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nomeDoLevelDeJogo: SampleScene
-  painelMenuInicial: {fileID: 1970390011}
-  painelOpcoes: {fileID: 0}
 --- !u!1 &1434957142
 GameObject:
   m_ObjectHideFlags: 0
@@ -1388,10 +1385,22 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 1970390014}
+  m_TargetGraphic: {fileID: 1434957144}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1970390014
 MonoBehaviour:
   m_ObjectHideFlags: 0
