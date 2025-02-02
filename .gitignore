@@ -43,11 +43,11 @@ UserSettings/
 *.mov
 
 # Arquivos do Windows/macOS que não devem ser commitados
-.DS_Store
+*.DS_Store
 Thumbs.db
 ehthumbs.db
-.png.meta
-.meta
-.txt.meta
-.ttf.meta
-.json.meta
+*.png.meta
+*.meta
+*.txt.meta
+*.ttf.meta
+*.json.meta
