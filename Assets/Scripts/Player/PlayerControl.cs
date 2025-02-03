@@ -5,7 +5,7 @@ public class PlayerControl : MonoBehaviour
 {
     public Animator animator;
     public float health = 100f;
-    private int speed = 5;
+    private int speed = 8;
     public Rigidbody2D rb;
     private SpriteRenderer spriteRenderer;
     public GameObject kunaiPrefab;
