@@ -4246,7 +4246,6 @@ GameObject:
   - component: {fileID: 1275035357}
   - component: {fileID: 1275035356}
   - component: {fileID: 1275035355}
-  - component: {fileID: 1275035359}
   m_Layer: 0
   m_Name: skyObj
   m_TagString: Untagged
@@ -4338,25 +4337,12 @@ Transform:
   m_GameObject: {fileID: 1275035354}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4, y: -2.27, z: 0.4747373}
-  m_LocalScale: {x: 49.82858, y: 28.440775, z: 1}
+  m_LocalPosition: {x: 0.26, y: 1.54, z: 0.4747373}
+  m_LocalScale: {x: 34.593178, y: 19.178995, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1118149049}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1275035359
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1275035354}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 19de63220b73196409cd0ae847132af4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  skySpeed: 1
 --- !u!1 &1312537209
 GameObject:
   m_ObjectHideFlags: 0
