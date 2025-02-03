@@ -24,6 +24,11 @@ public class PlayerControl : MonoBehaviour
     Vector2 colliderSlideSize = new Vector2(3.790423f, 3.790423f);
     Vector2 colliderSlideOffset = new Vector2(0.7352118f, 0.4f);
 
+    public AudioSource audioSource;
+    public AudioClip slashSound;
+    public AudioClip kunaiSound;
+
+
     private Vector3 startPosition; // Guarda a posição inicial do jogador
 
     void Start()
@@ -38,6 +43,7 @@ public class PlayerControl : MonoBehaviour
         colliderOffset = colliderOriginal.offset;
 
         startPosition = transform.position; // Armazena a posição inicial do jogador
+        audioSource = GetComponent<AudioSource>(); 
 
         if (attackHitbox != null)
         {
@@ -150,6 +156,7 @@ public class PlayerControl : MonoBehaviour
                 {
                     animator.SetTrigger("attack");
                     StartCoroutine(EnableAttackHitbox());
+                    audioSource.PlayOneShot(slashSound);
                 }
             }
 
@@ -175,6 +182,7 @@ public class PlayerControl : MonoBehaviour
     {
         yield return new WaitForSeconds(delay); // Aguarda o tempo especificado
 
+        audioSource.PlayOneShot(kunaiSound);
         if (!spriteRenderer.flipX)
             Instantiate(kunaiPrefab, KunaiSpawnPointRight.position, KunaiSpawnPointRight.rotation);
         else

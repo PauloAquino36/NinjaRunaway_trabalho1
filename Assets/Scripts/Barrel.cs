@@ -3,13 +3,21 @@ using UnityEngine;
 public class Barrel : MonoBehaviour
 {
     public GameObject brokenBarrelPrefab;
-    public float destroyDelay = 0.1f; // Pequeno delay antes de destruir
+    public float destroyDelay = 0.5f; // Pequeno delay antes de destruir
+    public AudioSource audioSource;
+    public AudioClip sound;
 
+    void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
     void OnTriggerEnter2D(Collider2D collision)
     {
         // Verifica se o barril foi atingido pelo jogador ou pela kunai
         if (collision.CompareTag("PlayerAttack") || collision.CompareTag("Kunai"))
         {
+            // Toca o som do barril quebrando
+            audioSource.PlayOneShot(sound);
             BreakBarrel();
         }
     }
@@ -20,6 +28,7 @@ public class Barrel : MonoBehaviour
         if (brokenBarrelPrefab != null)
         {
             Instantiate(brokenBarrelPrefab, transform.position, transform.rotation);
+            
         }
 
         // Destroi o barril original
