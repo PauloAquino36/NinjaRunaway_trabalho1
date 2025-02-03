@@ -114,6 +114,11 @@ public class PlayerControl : MonoBehaviour
             animator.SetBool("isGround", true);
             animator.SetBool("climbMove", false);
         }
+        if(collision.gameObject.CompareTag("Finish"))
+        {
+            SceneManager.LoadScene("Win");
+           Debug.Log("Ganhou!");
+        }
     }
 
     private void move()
