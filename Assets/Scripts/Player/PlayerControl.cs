@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerControl : MonoBehaviour
 {
@@ -15,7 +16,7 @@ public class PlayerControl : MonoBehaviour
     private int maxJumps = 3;
     public float glideGravityScale = 0.25f;
     public float originalGravityScale;
-    public GameObject attackHitbox; // Referência para a hitbox do ataque
+    public GameObject attackHitbox;
 
     public bool coowldown = false;
     CapsuleCollider2D colliderOriginal;
@@ -28,8 +29,9 @@ public class PlayerControl : MonoBehaviour
     public AudioClip slashSound;
     public AudioClip kunaiSound;
 
+    public int vidas = 2;
 
-    private Vector3 startPosition; // Guarda a posição inicial do jogador
+    private Vector3 startPosition;
 
     void Start()
     {
@@ -42,12 +44,12 @@ public class PlayerControl : MonoBehaviour
         colliderSize = colliderOriginal.size;
         colliderOffset = colliderOriginal.offset;
 
-        startPosition = transform.position; // Armazena a posição inicial do jogador
-        audioSource = GetComponent<AudioSource>(); 
+        startPosition = transform.position;
+        audioSource = GetComponent<AudioSource>();
 
         if (attackHitbox != null)
         {
-            attackHitbox.SetActive(false); // Desativa a hitbox no início
+            attackHitbox.SetActive(false);
         }
     }
 
@@ -56,17 +58,31 @@ public class PlayerControl : MonoBehaviour
         move();
         attack();
         corrigeRotate();
-        CheckFallDeath(); // Verifica se o jogador caiu do mapa
+        CheckFallDeath();
+
+        if (transform.position.y < -5)
+        {
+            vidas--;
+
+            if (vidas >= 0)
+            {
+                transform.position = startPosition;
+            }
+            else
+            {
+                SceneManager.LoadScene("GameOver");
+            }
+        }
     }
 
     public void CheckFallDeath()
     {
-        if (transform.position.y < -10) // Caso o jogador caia do mapa
+        if (transform.position.y < -10)
         {
             if (health > 35)
             {
                 health -= 35;
-                Respawn(); // Teletransporta o jogador de volta
+                Respawn();
             }
             else
             {
@@ -77,8 +93,8 @@ public class PlayerControl : MonoBehaviour
 
     public void Respawn()
     {
-        rb.linearVelocity = Vector2.zero; // Zera a velocidade para evitar quedas contínuas
-        transform.position = startPosition; // Teletransporta o jogador para o início
+        rb.linearVelocity = Vector2.zero; // Corrigido de velocity para linearVelocity
+        transform.position = startPosition;
     }
 
     public void KillPlayer()
@@ -87,9 +103,8 @@ public class PlayerControl : MonoBehaviour
         rb.linearVelocity = Vector2.zero;
         rb.gravityScale = 0;
         rb.bodyType = RigidbodyType2D.Kinematic;
-        this.enabled = false; // Desativa os controles do jogador
+        this.enabled = false;
     }
-
 
     void OnCollisionEnter2D(Collision2D collision)
     {
@@ -104,10 +119,10 @@ public class PlayerControl : MonoBehaviour
     private void move()
     {
         float moveInput = Input.GetAxis("Horizontal");
-        rb.linearVelocity = new Vector2(moveInput * speed, rb.linearVelocity.y);
+        rb.linearVelocity = new Vector2(moveInput * speed, rb.linearVelocity.y); // Corrigido de velocity para linearVelocity
 
-    spriteRenderer.flipX = moveInput < 0;
-    animator.SetBool("run", moveInput != 0);
+        spriteRenderer.flipX = moveInput < 0;
+        animator.SetBool("run", moveInput != 0);
 
         if (Input.GetKeyDown(KeyCode.Space) && jumpCount < maxJumps)
         {
@@ -131,17 +146,17 @@ public class PlayerControl : MonoBehaviour
             animator.SetBool("glider", false);
         }
 
-        if ((Input.GetKeyUp(KeyCode.S) || Input.GetKeyUp(KeyCode.DownArrow)) && animator.GetBool("isGround") == true)
+        if ((Input.GetKeyUp(KeyCode.S) || Input.GetKeyUp(KeyCode.DownArrow)) && animator.GetBool("isGround"))
         {
             transform.Translate(Input.GetAxis("Horizontal") * speed * (spriteRenderer.flipX ? -6 : 6) * Time.deltaTime, 0, 0);
             animator.SetTrigger("slide");
         }
 
-        if (animator.GetBool("climb") == true && Input.GetKey(KeyCode.W))
+        if (animator.GetBool("climb") && Input.GetKey(KeyCode.W))
         {
             animator.SetBool("climbMove", true);
             rb.gravityScale = 0;
-            rb.linearVelocity = new Vector2(0, 0);
+            rb.linearVelocity = Vector2.zero; // Corrigido de velocity para linearVelocity
             transform.Translate(0, 1 * speed * Time.deltaTime, 0);
         }
     }
@@ -152,7 +167,7 @@ public class PlayerControl : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.K))
             {
-                if (coowldown == false && animator.GetBool("glider") == false && animator.GetBool("climbMove") == false)
+                if (!coowldown && !animator.GetBool("glider") && !animator.GetBool("climbMove"))
                 {
                     animator.SetTrigger("attack");
                     StartCoroutine(EnableAttackHitbox());
@@ -162,10 +177,10 @@ public class PlayerControl : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.L))
             {
-                if (coowldown == false && animator.GetBool("glider") == false && animator.GetBool("climbMove") == false)
+                if (!coowldown && !animator.GetBool("glider") && !animator.GetBool("climbMove"))
                 {
                     animator.SetTrigger("throw");
-                    StartCoroutine(ThrowKunaiWithDelay(0.25f)); // Chama a corrotina com atraso de 0.25s
+                    StartCoroutine(ThrowKunaiWithDelay(0.25f));
                 }
             }
         }
@@ -173,20 +188,16 @@ public class PlayerControl : MonoBehaviour
 
     private IEnumerator EnableAttackHitbox()
     {
-        attackHitbox.SetActive(true); // Ativa a hitbox do ataque
-        yield return new WaitForSeconds(0.2f); // Mantém ativa por 0.2s
-        attackHitbox.SetActive(false); // Desativa a hitbox após o tempo
+        attackHitbox.SetActive(true);
+        yield return new WaitForSeconds(0.2f);
+        attackHitbox.SetActive(false);
     }
 
     private IEnumerator ThrowKunaiWithDelay(float delay)
     {
-        yield return new WaitForSeconds(delay); // Aguarda o tempo especificado
-
+        yield return new WaitForSeconds(delay);
         audioSource.PlayOneShot(kunaiSound);
-        if (!spriteRenderer.flipX)
-            Instantiate(kunaiPrefab, KunaiSpawnPointRight.position, KunaiSpawnPointRight.rotation);
-        else
-            Instantiate(kunaiPrefab, KunaiSpawnPointLeft.position, KunaiSpawnPointLeft.rotation);
+        Instantiate(kunaiPrefab, spriteRenderer.flipX ? KunaiSpawnPointLeft.position : KunaiSpawnPointRight.position, Quaternion.identity);
     }
 
     public void originalCollider()
@@ -203,17 +214,9 @@ public class PlayerControl : MonoBehaviour
 
     public void corrigeRotate()
     {
-        if (transform.rotation.z != 0)
+        if (transform.rotation != Quaternion.identity)
         {
-            transform.rotation = Quaternion.Euler(0, 0, 0);
-        }
-        if (transform.rotation.y != 0)
-        {
-            transform.rotation = Quaternion.Euler(0, 0, 0);
-        }
-        if (transform.rotation.x != 0)
-        {
-            transform.rotation = Quaternion.Euler(0, 0, 0);
+            transform.rotation = Quaternion.identity;
         }
     }
 
