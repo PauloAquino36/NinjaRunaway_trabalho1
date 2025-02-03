@@ -15,6 +15,7 @@ public class PlayerControl : MonoBehaviour
     private int maxJumps = 3;
     public float glideGravityScale = 0.25f;
     public float originalGravityScale;
+    public GameObject attackHitbox; // Referência para a hitbox do ataque
 
     public bool coowldown = false;
     CapsuleCollider2D colliderOriginal;
@@ -22,6 +23,8 @@ public class PlayerControl : MonoBehaviour
     Vector2 colliderOffset;
     Vector2 colliderSlideSize = new Vector2(3.790423f, 3.790423f);
     Vector2 colliderSlideOffset = new Vector2(0.7352118f, 0.4f);
+
+    private Vector3 startPosition; // Guarda a posição inicial do jogador
 
     void Start()
     {
@@ -33,6 +36,13 @@ public class PlayerControl : MonoBehaviour
 
         colliderSize = colliderOriginal.size;
         colliderOffset = colliderOriginal.offset;
+
+        startPosition = transform.position; // Armazena a posição inicial do jogador
+
+        if (attackHitbox != null)
+        {
+            attackHitbox.SetActive(false); // Desativa a hitbox no início
+        }
     }
 
     void Update()
@@ -45,21 +55,35 @@ public class PlayerControl : MonoBehaviour
 
     public void CheckFallDeath()
     {
-        if (transform.position.y < -10) // Ajuste esse valor conforme necessário
+        if (transform.position.y < -10) // Caso o jogador caia do mapa
         {
-            KillPlayer();
+            if (health > 35)
+            {
+                health -= 35;
+                Respawn(); // Teletransporta o jogador de volta
+            }
+            else
+            {
+                KillPlayer();
+            }
         }
+    }
+
+    public void Respawn()
+    {
+        rb.linearVelocity = Vector2.zero; // Zera a velocidade para evitar quedas contínuas
+        transform.position = startPosition; // Teletransporta o jogador para o início
     }
 
     public void KillPlayer()
     {
         health = 0;
-        animator.SetTrigger("die"); // Certifique-se de que há uma animação de morte configurada
         rb.linearVelocity = Vector2.zero;
         rb.gravityScale = 0;
         rb.bodyType = RigidbodyType2D.Kinematic;
         this.enabled = false; // Desativa os controles do jogador
     }
+
 
     void OnCollisionEnter2D(Collision2D collision)
     {
@@ -73,17 +97,11 @@ public class PlayerControl : MonoBehaviour
 
     private void move()
     {
-        transform.Translate(Input.GetAxis("Horizontal") * speed * Time.deltaTime, 0, 0);
-        spriteRenderer.flipX = Input.GetAxis("Horizontal") < 0 ? true : Input.GetAxis("Horizontal") > 0 ? false : spriteRenderer.flipX;
+        float moveInput = Input.GetAxis("Horizontal");
+        rb.linearVelocity = new Vector2(moveInput * speed, rb.linearVelocity.y);
 
-        if (Input.GetAxis("Horizontal") != 0)
-        {
-            animator.SetBool("run", true);
-        }
-        else
-        {
-            animator.SetBool("run", false);
-        }
+    spriteRenderer.flipX = moveInput < 0;
+    animator.SetBool("run", moveInput != 0);
 
         if (Input.GetKeyDown(KeyCode.Space) && jumpCount < maxJumps)
         {
@@ -131,6 +149,7 @@ public class PlayerControl : MonoBehaviour
                 if (coowldown == false && animator.GetBool("glider") == false && animator.GetBool("climbMove") == false)
                 {
                     animator.SetTrigger("attack");
+                    StartCoroutine(EnableAttackHitbox());
                 }
             }
 
@@ -143,6 +162,13 @@ public class PlayerControl : MonoBehaviour
                 }
             }
         }
+    }
+
+    private IEnumerator EnableAttackHitbox()
+    {
+        attackHitbox.SetActive(true); // Ativa a hitbox do ataque
+        yield return new WaitForSeconds(0.2f); // Mantém ativa por 0.2s
+        attackHitbox.SetActive(false); // Desativa a hitbox após o tempo
     }
 
     private IEnumerator ThrowKunaiWithDelay(float delay)
