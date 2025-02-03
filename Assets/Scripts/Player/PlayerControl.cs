@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -28,8 +29,6 @@ public class PlayerControl : MonoBehaviour
     public AudioSource audioSource;
     public AudioClip slashSound;
     public AudioClip kunaiSound;
-
-    public int vidas = 2;
 
     private Vector3 startPosition;
 
@@ -62,9 +61,8 @@ public class PlayerControl : MonoBehaviour
 
         if (transform.position.y < -5)
         {
-            vidas--;
-
-            if (vidas >= 0)
+            health -= 35f;
+            if (health >= 0)
             {
                 transform.position = startPosition;
             }
@@ -81,7 +79,9 @@ public class PlayerControl : MonoBehaviour
         {
             if (health > 35)
             {
+                Debug.Log("perdeu vida!" + health);
                 health -= 35;
+                Debug.Log("perdeu vida!" + health);
                 Respawn();
             }
             else
