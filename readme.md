@@ -58,6 +58,12 @@ O projeto será avaliado com base nos seguintes critérios:
 
 Os assets utilizados no jogo foram criados ou obtidos de terceiros com as devidas permissões e créditos atribuídos.
 
+Sprite do ninja:
+https://www.gameart2d.com/ninja-adventure---free-sprites.html
+
+Cenario:
+https://assetstore.unity.com/packages/2d/environments/pixel-art-platformer-village-props-166114
+
 ---
 
 ## 🛑 Como Jogar
