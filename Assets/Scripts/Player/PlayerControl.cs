@@ -1,10 +1,10 @@
 using System.Collections;
-
 using UnityEngine;
 
 public class PlayerControl : MonoBehaviour
 {
     public Animator animator;
+    public float health = 100f;
     private int speed = 5;
     public Rigidbody2D rb;
     private SpriteRenderer spriteRenderer;
@@ -40,6 +40,25 @@ public class PlayerControl : MonoBehaviour
         move();
         attack();
         corrigeRotate();
+        CheckFallDeath(); // Verifica se o jogador caiu do mapa
+    }
+
+    public void CheckFallDeath()
+    {
+        if (transform.position.y < -10) // Ajuste esse valor conforme necessário
+        {
+            KillPlayer();
+        }
+    }
+
+    public void KillPlayer()
+    {
+        health = 0;
+        animator.SetTrigger("die"); // Certifique-se de que há uma animação de morte configurada
+        rb.linearVelocity = Vector2.zero;
+        rb.gravityScale = 0;
+        rb.bodyType = RigidbodyType2D.Kinematic;
+        this.enabled = false; // Desativa os controles do jogador
     }
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -54,9 +73,9 @@ public class PlayerControl : MonoBehaviour
 
     private void move()
     {
-
         transform.Translate(Input.GetAxis("Horizontal") * speed * Time.deltaTime, 0, 0);
         spriteRenderer.flipX = Input.GetAxis("Horizontal") < 0 ? true : Input.GetAxis("Horizontal") > 0 ? false : spriteRenderer.flipX;
+
         if (Input.GetAxis("Horizontal") != 0)
         {
             animator.SetBool("run", true);
@@ -65,6 +84,7 @@ public class PlayerControl : MonoBehaviour
         {
             animator.SetBool("run", false);
         }
+
         if (Input.GetKeyDown(KeyCode.Space) && jumpCount < maxJumps)
         {
             if (jumpCount < (maxJumps - 1))
@@ -86,13 +106,14 @@ public class PlayerControl : MonoBehaviour
             rb.gravityScale = originalGravityScale;
             animator.SetBool("glider", false);
         }
+
         if ((Input.GetKeyUp(KeyCode.S) || Input.GetKeyUp(KeyCode.DownArrow)) && animator.GetBool("isGround") == true)
         {
             transform.Translate(Input.GetAxis("Horizontal") * speed * (spriteRenderer.flipX ? -6 : 6) * Time.deltaTime, 0, 0);
             animator.SetTrigger("slide");
-
         }
-        if(animator.GetBool("climb") == true && Input.GetKey(KeyCode.W))
+
+        if (animator.GetBool("climb") == true && Input.GetKey(KeyCode.W))
         {
             animator.SetBool("climbMove", true);
             rb.gravityScale = 0;
@@ -100,13 +121,14 @@ public class PlayerControl : MonoBehaviour
             transform.Translate(0, 1 * speed * Time.deltaTime, 0);
         }
     }
+
     private void attack()
     {
         if (!animator.GetBool("run"))
         {
             if (Input.GetKeyDown(KeyCode.K))
             {
-                if(coowldown == false && animator.GetBool("glider") == false && animator.GetBool("climbMove") == false)
+                if (coowldown == false && animator.GetBool("glider") == false && animator.GetBool("climbMove") == false)
                 {
                     animator.SetTrigger("attack");
                 }
@@ -116,8 +138,8 @@ public class PlayerControl : MonoBehaviour
             {
                 if (coowldown == false && animator.GetBool("glider") == false && animator.GetBool("climbMove") == false)
                 {
-                animator.SetTrigger("throw");
-                StartCoroutine(ThrowKunaiWithDelay(0.25f)); //Chama a corrotina com atraso de 0.25s
+                    animator.SetTrigger("throw");
+                    StartCoroutine(ThrowKunaiWithDelay(0.25f)); // Chama a corrotina com atraso de 0.25s
                 }
             }
         }
@@ -138,22 +160,24 @@ public class PlayerControl : MonoBehaviour
         colliderOriginal.size = colliderSize;
         colliderOriginal.offset = colliderOffset;
     }
+
     public void slideCollider()
     {
         colliderOriginal.size = colliderSlideSize;
         colliderOriginal.offset = colliderSlideOffset;
     }
+
     public void corrigeRotate()
     {
-        if(transform.rotation.z != 0)
+        if (transform.rotation.z != 0)
         {
             transform.rotation = Quaternion.Euler(0, 0, 0);
         }
-        if(transform.rotation.y != 0)
+        if (transform.rotation.y != 0)
         {
             transform.rotation = Quaternion.Euler(0, 0, 0);
         }
-        if(transform.rotation.x != 0)
+        if (transform.rotation.x != 0)
         {
             transform.rotation = Quaternion.Euler(0, 0, 0);
         }
@@ -163,11 +187,9 @@ public class PlayerControl : MonoBehaviour
     {
         coowldown = true;
     }
+
     public void resetCooldown()
     {
         coowldown = false;
     }
-    
 }
-
-
