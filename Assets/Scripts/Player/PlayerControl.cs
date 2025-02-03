@@ -202,7 +202,10 @@ public class PlayerControl : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);
         audioSource.PlayOneShot(kunaiSound);
-        Instantiate(kunaiPrefab, spriteRenderer.flipX ? KunaiSpawnPointLeft.position : KunaiSpawnPointRight.position, Quaternion.identity);
+        if (!spriteRenderer.flipX)
+            Instantiate(kunaiPrefab, KunaiSpawnPointRight.position, KunaiSpawnPointRight.rotation);
+        else
+            Instantiate(kunaiPrefab, KunaiSpawnPointLeft.position, KunaiSpawnPointLeft.rotation);
     }
 
     public void originalCollider()
@@ -219,10 +222,15 @@ public class PlayerControl : MonoBehaviour
 
     public void corrigeRotate()
     {
-        if (transform.rotation != Quaternion.identity)
+        if (transform.rotation.z != 0)
         {
-            transform.rotation = Quaternion.identity;
+            transform.rotation = Quaternion.Euler(0, 0, 0);
         }
+        if (transform.rotation.y != 0)
+        {
+            transform.rotation = Quaternion.Euler(0, 0, 0);
+        }
+        transform.rotation = Quaternion.Euler(0, 0, 0);
     }
 
     public void setCooldown()
